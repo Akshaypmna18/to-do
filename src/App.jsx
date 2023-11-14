@@ -141,7 +141,7 @@ function App() {
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
                       <AlertDialogAction
-                        className="hover:bg-red-800 hover:text-white"
+                        className="bg-red-800 text-white sm:bg-primary sm:text-secondary hover:bg-red-800 hover:text-white"
                         onClick={() => deleteTodo(id)}
                       >
                         Continue
@@ -175,7 +175,7 @@ function App() {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction
-                className="hover:bg-red-800 hover:text-white"
+                className="bg-red-800 text-white sm:bg-primary sm:text-secondary hover:bg-red-800 hover:text-white"
                 onClick={() => {
                   localStorage.removeItem("Todo");
                   setTodos([]);
