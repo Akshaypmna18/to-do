@@ -2,6 +2,17 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Theme from "./theme";
 import { Checkbox } from "./ui/checkbox";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -85,6 +96,7 @@ function App() {
             const { text, id, status } = item;
             return (
               <li
+                title="click to check/uncheck"
                 key={id}
                 className={
                   status
@@ -98,33 +110,83 @@ function App() {
                   checked={status}
                   onCheckedChange={() => updateTodoStatus(id)}
                 />
-                {capitalize(text)}
-                <FontAwesomeIcon
-                  icon={faTrashCan}
-                  title="Delete this task"
-                  className={
-                    status
-                      ? `ml-2 cursor-pointer text-red-800`
-                      : `ml-2 cursor-pointer hover:text-red-800`
-                  }
-                  onClick={() => deleteTodo(id)}
-                />
+                <span
+                  className="flex-grow text-center"
+                  onClick={() => updateTodoStatus(id)}
+                >
+                  {capitalize(text)}
+                </span>
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      title="Delete this task"
+                      className={
+                        status
+                          ? `ml-2 cursor-pointer text-red-800`
+                          : `ml-2 cursor-pointer hover:text-red-800`
+                      }
+                    />
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your task from our servers.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        className="hover:bg-red-800 hover:text-white"
+                        onClick={() => deleteTodo(id)}
+                      >
+                        Continue
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </li>
             );
           })}
-        <Button
-          className={
-            isTodo
-              ? ` font-[poppins] text-[calc(1rem+.5vw)] px-4 py-5 max-w-[10rem] mx-auto`
-              : `hidden`
-          }
-          onClick={() => {
-            localStorage.removeItem("Todo");
-            setTodos([]);
-          }}
-        >
-          Clear List
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button
+              className={
+                isTodo
+                  ? ` font-[poppins] text-[calc(1rem+.5vw)] px-4 py-5 max-w-[10rem] mx-auto`
+                  : `hidden`
+              }
+            >
+              Clear List
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete all
+                of your tasks from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                className="hover:bg-red-800 hover:text-white"
+                onClick={() => {
+                  localStorage.removeItem("Todo");
+                  setTodos([]);
+                  setTodo("");
+                }}
+              >
+                Continue
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </ul>
     </div>
   );
