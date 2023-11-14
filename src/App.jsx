@@ -36,6 +36,14 @@ function App() {
     setTodos(updatedTodos);
   };
 
+  // update todo status
+  const updateTodoStatus = (id) => {
+    let updatedTodos = todos.map((item) =>
+      item.id === id ? { ...item, status: !item.status } : item
+    );
+    setTodos(updatedTodos);
+  };
+
   // update todos
   useEffect(() => {
     if (todos) localStorage.setItem("Todos", JSON.stringify(todos));
@@ -71,35 +79,39 @@ function App() {
       </div>
 
       <ul className="flex flex-col gap-4 pt-4 pb-8 lg:pt-8">
-        {todos.map((item) => {
-          const { text, id, status } = item;
-          return (
-            <li
-              key={id}
-              className={
-                status
-                  ? `flex items-center shadow justify-between line-through text-gray-500 text-[calc(1rem+.5vw)] p-2 px-4 border rounded`
-                  : `flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 px-4 border rounded`
-              }
-            >
-              <Checkbox
-                className="mr-2 hover:border-green-800 data-[state=checked]:bg-green-800 data-[state=checked]:border-green-800"
-                title={status ? `Uncheck` : `Check`}
-              />
-              {capitalize(text)}
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                title="Delete this task"
+        {todos
+          .sort((a, b) => (a.status === b.status ? 0 : a.status ? 1 : -1))
+          .map((item) => {
+            const { text, id, status } = item;
+            return (
+              <li
+                key={id}
                 className={
                   status
-                    ? `ml-2 cursor-pointer text-red-800`
-                    : `ml-2 cursor-pointer hover:text-red-800`
+                    ? `flex items-center shadow justify-between line-through text-gray-500 text-[calc(1rem+.5vw)] p-2 px-4 border rounded`
+                    : `flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 px-4 border rounded`
                 }
-                onClick={() => deleteTodo(id)}
-              />
-            </li>
-          );
-        })}
+              >
+                <Checkbox
+                  className="mr-2 hover:border-green-800 data-[state=checked]:bg-green-800 data-[state=checked]:border-green-800"
+                  title={status ? `Uncheck` : `Check`}
+                  checked={status}
+                  onCheckedChange={() => updateTodoStatus(id)}
+                />
+                {capitalize(text)}
+                <FontAwesomeIcon
+                  icon={faTrashCan}
+                  title="Delete this task"
+                  className={
+                    status
+                      ? `ml-2 cursor-pointer text-red-800`
+                      : `ml-2 cursor-pointer hover:text-red-800`
+                  }
+                  onClick={() => deleteTodo(id)}
+                />
+              </li>
+            );
+          })}
         <Button
           className={
             isTodo
