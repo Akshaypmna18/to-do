@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 function App() {
   // get todos from localstorage
   const getTodo = () => {
-    const TODO = JSON.parse(localStorage.getItem("Todo"));
+    const TODO = JSON.parse(localStorage.getItem("Todos"));
     return TODO || [];
   };
   const [todos, setTodos] = useState(getTodo);
@@ -23,15 +23,22 @@ function App() {
   const addTodo = () => {
     if (!todo) alert("Enter a task");
     else {
-      if (!todos.some((item) => item.text === todo))
+      if (!todos.some((item) => item.text === todo.trim())) {
         setTodos([...todos, { id: Date.now(), text: todo, status: false }]);
-      else alert("Same task already exists");
+        setTodo("");
+      } else alert("Same task already exists");
     }
+  };
+
+  // delete todo
+  const deleteTodo = (id) => {
+    let updatedTodos = todos.filter((item) => item.id !== id);
+    setTodos(updatedTodos);
   };
 
   // update todos
   useEffect(() => {
-    if (todos.length > 0) localStorage.setItem("Todo", JSON.stringify(todos));
+    if (todos) localStorage.setItem("Todos", JSON.stringify(todos));
     setIsTodo(todos.length > 0 ? true : false);
   }, [todos]);
 
@@ -47,14 +54,12 @@ function App() {
         <Input
           placeholder="Enter the task..."
           className="font-[poppins]"
+          value={todo}
           onChange={(e) => setTodo(e.target.value)}
           name="task-name"
+          autoFocus
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              addTodo();
-              e.target.value = "";
-              setTodo("");
-            }
+            if (e.key === "Enter") addTodo();
           }}
         />
         <Button
@@ -66,18 +71,31 @@ function App() {
       </div>
 
       <ul className="flex flex-col gap-4 pt-4 pb-8 lg:pt-8">
-        {todos.map((item, pos) => {
-          const { text } = item;
+        {todos.map((item) => {
+          const { text, id, status } = item;
           return (
             <li
-              key={pos}
-              className="flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 px-4 border rounded"
+              key={id}
+              className={
+                status
+                  ? `flex items-center shadow justify-between line-through text-gray-500 text-[calc(1rem+.5vw)] p-2 px-4 border rounded`
+                  : `flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 px-4 border rounded`
+              }
             >
-              <Checkbox className="mr-2 hover:border-green-800 data-[state=checked]:bg-green-800 data-[state=checked]:border-green-800" />
+              <Checkbox
+                className="mr-2 hover:border-green-800 data-[state=checked]:bg-green-800 data-[state=checked]:border-green-800"
+                title={status ? `Uncheck` : `Check`}
+              />
               {capitalize(text)}
               <FontAwesomeIcon
                 icon={faTrashCan}
-                className="ml-2 cursor-pointer hover:text-red-800"
+                title="Delete this task"
+                className={
+                  status
+                    ? `ml-2 cursor-pointer text-red-800`
+                    : `ml-2 cursor-pointer hover:text-red-800`
+                }
+                onClick={() => deleteTodo(id)}
               />
             </li>
           );
