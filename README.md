@@ -1,10 +1,13 @@
 # A simple Todo app created using ReactJS
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 </br>
 ⭐It is completely responsive, and has a dark and light theme. The data is stored in the local storage.
+
 </br>
 ⭐Used Shadcn UI for resusable components, Fontawesome for icons and Tailwind CSS for styling
+
 </br>
 ⭐Demo Link : https://aks-to-do.vercel.app
 
