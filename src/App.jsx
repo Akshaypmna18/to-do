@@ -32,7 +32,7 @@ function App() {
 
   // add todos
   const addTodo = () => {
-    if (!todo) alert("Enter a task");
+    if (!todo.trim()) alert("Enter a task");
     else {
       if (!todos.some((item) => item.text === todo.trim())) {
         setTodos([...todos, { id: Date.now(), text: todo, status: false }]);
