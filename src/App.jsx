@@ -16,6 +16,12 @@ import {
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 function App() {
   // get todos from localstorage
@@ -96,7 +102,6 @@ function App() {
             const { text, id, status } = item;
             return (
               <li
-                title="click to check/uncheck"
                 key={id}
                 className={
                   status
@@ -104,12 +109,21 @@ function App() {
                     : `flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 px-4 border rounded`
                 }
               >
-                <Checkbox
-                  className="mr-2 hover:border-green-800 data-[state=checked]:bg-green-800 data-[state=checked]:border-green-800"
-                  title={status ? `Uncheck` : `Check`}
-                  checked={status}
-                  onCheckedChange={() => updateTodoStatus(id)}
-                />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Checkbox
+                        className="mr-2 hover:border-green-800 data-[state=checked]:bg-green-800 data-[state=checked]:border-green-800"
+                        checked={status}
+                        onCheckedChange={() => updateTodoStatus(id)}
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{status ? `Uncheck` : `Check`}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+
                 <span
                   className="flex-grow text-center"
                   onClick={() => updateTodoStatus(id)}
@@ -118,15 +132,23 @@ function App() {
                 </span>
                 <AlertDialog>
                   <AlertDialogTrigger>
-                    <FontAwesomeIcon
-                      icon={faTrashCan}
-                      title="Delete this task"
-                      className={
-                        status
-                          ? `ml-2 cursor-pointer text-red-800`
-                          : `ml-2 cursor-pointer hover:text-red-800`
-                      }
-                    />
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <FontAwesomeIcon
+                            icon={faTrashCan}
+                            className={
+                              status
+                                ? `ml-2 cursor-pointer text-red-800`
+                                : `ml-2 cursor-pointer hover:text-red-800`
+                            }
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Delete this task</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>

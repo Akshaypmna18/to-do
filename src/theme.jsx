@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 function Theme() {
   const getTheme = () => {
@@ -23,11 +29,20 @@ function Theme() {
 
   return (
     <>
-      <FontAwesomeIcon
-        className="absolute top-12 right-8 text-[calc(1rem+1.5dvw)] cursor-pointer"
-        icon={theme === "light" ? faMoon : faSun}
-        onClick={toggleTheme}
-      />
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <FontAwesomeIcon
+              className="absolute top-12 right-8 text-[calc(1rem+1.5dvw)] cursor-pointer"
+              icon={theme === "light" ? faMoon : faSun}
+              onClick={toggleTheme}
+            />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Click to toggle theme</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </>
   );
 }
