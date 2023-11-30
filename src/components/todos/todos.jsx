@@ -21,9 +21,25 @@ import {
 } from "../ui/tooltip";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-function Todos({ todos, updateTodoStatus, capitalize, deleteTodo }) {
+function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
+  const handleOnDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination) return;
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    )
+      return;
+    const reorderdTodos = [...todos];
+    const sourceIndex = source.index,
+      destinationIndex = destination.index;
+    const [removedTodo] = reorderdTodos.splice(sourceIndex, 1);
+    reorderdTodos.splice(destinationIndex, 0, removedTodo);
+    return setTodos(reorderdTodos);
+  };
+
   return (
-    <DragDropContext>
+    <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="to-do-list">
         {(provided) => (
           <ul
@@ -32,11 +48,12 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo }) {
             ref={provided.innerRef}
           >
             {todos
+              .filter((item) => item !== null)
               .sort((a, b) => (a.status === b.status ? 0 : a.status ? 1 : -1))
-              .map((item) => {
+              .map((item, pos) => {
                 const { text, id, status } = item;
                 return (
-                  <Draggable key={id} draggableId={`${id}`} index={id}>
+                  <Draggable key={id} draggableId={`${id}`} index={pos}>
                     {(provided) => (
                       <li
                         {...provided.draggableProps}

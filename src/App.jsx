@@ -63,6 +63,7 @@ function App() {
         updateTodoStatus={updateTodoStatus}
         capitalize={capitalize}
         deleteTodo={deleteTodo}
+        setTodos={setTodos}
       />
 
       <TodoClear isTodo={isTodo} setTodo={setTodo} setTodos={setTodos} />
