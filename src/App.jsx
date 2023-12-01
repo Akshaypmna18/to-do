@@ -44,7 +44,10 @@ function App() {
 
   // update todos
   useEffect(() => {
-    if (todos) localStorage.setItem("Todos", JSON.stringify(todos));
+    if (todos) {
+      todos.sort((a, b) => (a.status === b.status ? 0 : a.status ? 1 : -1));
+      localStorage.setItem("Todos", JSON.stringify(todos));
+    }
     setIsTodo(todos.length > 0 ? true : false);
   }, [todos]);
 

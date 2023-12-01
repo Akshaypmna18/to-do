@@ -35,6 +35,10 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
       destinationIndex = destination.index;
     const [removedTodo] = reorderdTodos.splice(sourceIndex, 1);
     reorderdTodos.splice(destinationIndex, 0, removedTodo);
+    console.log(sourceIndex);
+    console.log(destinationIndex);
+    console.log(removedTodo);
+    console.log(reorderdTodos);
     return setTodos(reorderdTodos);
   };
 

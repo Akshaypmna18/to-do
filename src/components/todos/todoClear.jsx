@@ -19,7 +19,7 @@ function TodoClear({ isTodo, setTodo, setTodos }) {
         <Button
           className={
             isTodo
-              ? ` font-[poppins] text-[calc(1rem+.5vw)] px-4 py-5 max-w-[10rem] mx-auto`
+              ? ` font-[poppins] text-[calc(1rem+.5vw)] px-4 py-5 max-w-[10rem] mx-auto mb-8`
               : `hidden`
           }
         >
