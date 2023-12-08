@@ -31,8 +31,7 @@ function TodosList() {
       setTodos: state.setTodos,
     })
   );
-  // capitalizes input
-  // const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
   const handleOnDragEnd = (result) => {
     const { source, destination } = result;
     if (!destination) return;
@@ -97,8 +96,8 @@ function TodosList() {
                           className="flex-grow text-center"
                           onClick={() => toggleTodoStatus(id)}
                         >
-                          {/* {capitalize(text)} */}
-                          {text}
+                          {capitalize(text)}
+                          {/* {text} */}
                         </span>
                         <AlertDialog>
                           <AlertDialogTrigger>
