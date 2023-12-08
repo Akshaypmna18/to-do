@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import {
   Tooltip,
   TooltipContent,
@@ -32,11 +31,17 @@ function Theme() {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <FontAwesomeIcon
-              className="absolute top-12 right-8 text-[calc(1rem+1.5dvw)] cursor-pointer"
-              icon={theme === "light" ? faMoon : faSun}
-              onClick={toggleTheme}
-            />
+            {theme === "light" ? (
+              <MoonIcon
+                className="absolute top-12 right-8 w-[calc(1rem+1.5dvw)] h-[calc(1rem+1.5dvw)] cursor-pointer"
+                onClick={toggleTheme}
+              />
+            ) : (
+              <SunIcon
+                className="absolute top-12 right-8 w-[calc(1rem+1.5dvw)] h-[calc(1rem+1.5dvw)] cursor-pointer"
+                onClick={toggleTheme}
+              />
+            )}
           </TooltipTrigger>
           <TooltipContent>
             <p>Click to toggle theme</p>

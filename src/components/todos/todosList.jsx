@@ -97,7 +97,6 @@ function TodosList() {
                           onClick={() => toggleTodoStatus(id)}
                         >
                           {capitalize(text)}
-                          {/* {text} */}
                         </span>
                         <AlertDialog>
                           <AlertDialogTrigger>
