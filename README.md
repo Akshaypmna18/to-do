@@ -5,7 +5,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ⭐It is completely responsive, and has a dark and light theme. The data is stored in the local storage.
 </br>
 
-⭐Used Shadcn UI for resusable components, Fontawesome for icons and Tailwind CSS for styling
+⭐Used :
+<ul>
+  <li>Zustand for state management</li>
+  <li>React dnd-kit for drag and drop</li>
+  <li>Shadcn UI for resusable components</li>
+  <li>Tailwind CSS for styling</li> 
+  <li>Fontawesome for icons</li>
+</ul>
 </br>
 
 ⭐Demo Link : https://aks-to-do.vercel.app
