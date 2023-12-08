@@ -20,8 +20,19 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import useTodo from "../../states";
 
-function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
+function TodosList() {
+  const { todos, removeTodo, toggleTodoStatus, setTodos } = useTodo(
+    (state) => ({
+      todos: state.todos,
+      removeTodo: state.removeTodo,
+      toggleTodoStatus: state.toggleTodoStatus,
+      setTodos: state.setTodos,
+    })
+  );
+  // capitalizes input
+  // const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
   const handleOnDragEnd = (result) => {
     const { source, destination } = result;
     if (!destination) return;
@@ -35,11 +46,7 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
       destinationIndex = destination.index;
     const [removedTodo] = reorderdTodos.splice(sourceIndex, 1);
     reorderdTodos.splice(destinationIndex, 0, removedTodo);
-    console.log(sourceIndex);
-    console.log(destinationIndex);
-    console.log(removedTodo);
-    console.log(reorderdTodos);
-    return setTodos(reorderdTodos);
+    setTodos(reorderdTodos);
   };
 
   return (
@@ -52,10 +59,10 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
             ref={provided.innerRef}
           >
             {todos
-              .filter((item) => item !== null)
+              // .filter((todo) => todo !== null)
               .sort((a, b) => (a.status === b.status ? 0 : a.status ? 1 : -1))
-              .map((item, pos) => {
-                const { text, id, status } = item;
+              .map((todo, pos) => {
+                const { text, id, status } = todo;
                 return (
                   <Draggable key={id} draggableId={`${id}`} index={pos}>
                     {(provided) => (
@@ -77,7 +84,7 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
                                   status ? "border-green-800" : ""
                                 }`}
                                 checked={status}
-                                onCheckedChange={() => updateTodoStatus(id)}
+                                onCheckedChange={() => toggleTodoStatus(id)}
                               />
                             </TooltipTrigger>
                             <TooltipContent>
@@ -87,9 +94,10 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
                         </TooltipProvider>
                         <span
                           className="flex-grow text-center"
-                          onClick={() => updateTodoStatus(id)}
+                          onClick={() => toggleTodoStatus(id)}
                         >
-                          {capitalize(text)}
+                          {/* {capitalize(text)} */}
+                          {text}
                         </span>
                         <AlertDialog>
                           <AlertDialogTrigger>
@@ -125,7 +133,7 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
                               <AlertDialogCancel>Cancel</AlertDialogCancel>
                               <AlertDialogAction
                                 className="bg-red-800 text-white sm:bg-primary sm:text-secondary hover:bg-red-800 hover:text-white"
-                                onClick={() => deleteTodo(id)}
+                                onClick={() => removeTodo(id)}
                               >
                                 Continue
                               </AlertDialogAction>
@@ -145,4 +153,4 @@ function Todos({ todos, updateTodoStatus, capitalize, deleteTodo, setTodos }) {
   );
 }
 
-export default Todos;
+export default TodosList;

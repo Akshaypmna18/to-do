@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,8 +11,18 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
+import useTodo from "../../states";
 
-function TodoClear({ isTodo, setTodo, setTodos }) {
+function TodoClear() {
+  const { todos, setTodos } = useTodo((state) => ({
+    todos: state.todos,
+    setTodos: state.setTodos,
+  }));
+  const [isTodo, setIsTodo] = useState(false);
+  useEffect(() => {
+    todos.length > 0 ? setIsTodo(true) : setIsTodo(false);
+  }, [todos]);
+
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -39,9 +49,7 @@ function TodoClear({ isTodo, setTodo, setTodos }) {
           <AlertDialogAction
             className="bg-red-800 text-white sm:bg-primary sm:text-secondary hover:bg-red-800 hover:text-white"
             onClick={() => {
-              localStorage.removeItem("Todo");
               setTodos([]);
-              setTodo("");
             }}
           >
             Continue
