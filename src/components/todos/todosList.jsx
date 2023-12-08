@@ -47,6 +47,7 @@ function TodosList() {
     const [removedTodo] = reorderdTodos.splice(sourceIndex, 1);
     reorderdTodos.splice(destinationIndex, 0, removedTodo);
     setTodos(reorderdTodos);
+    return setTodos(reorderdTodos);
   };
 
   return (
