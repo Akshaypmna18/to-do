@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   <li>React dnd-kit for drag and drop</li>
   <li>Shadcn UI for resusable components</li>
   <li>Tailwind CSS for styling</li> 
-  <li>Fontawesome for icons</li>
+  <li>Radix UI for icons</li>
 </ul>
 </br>
 
