@@ -2,7 +2,7 @@ import React from "react";
 import Theme from "./components/theme";
 import TodosInput from "./components/todos/todosForm";
 import TodoClear from "./components/todos/todoClear";
-import TodosList from "./components/todos/todosList";
+import TodosList from "./components/todos/todosList/todosList";
 
 function App() {
   return (

@@ -21,6 +21,13 @@ const todo = (set) => ({
   setTodos: (todo) => {
     set((state) => ({ todos: todo }));
   },
+  updateTodo: (todoId, todoText) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === todoId ? { ...todo, text: todoText } : todo
+      ),
+    }));
+  },
 });
 
 const useTodo = create(
