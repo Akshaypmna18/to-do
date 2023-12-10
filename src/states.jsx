@@ -19,7 +19,7 @@ const todo = (set) => ({
     }));
   },
   setTodos: (todo) => {
-    set((state) => ({ todos: todo }));
+    set(() => ({ todos: todo }));
   },
   updateTodo: (todoId, todoText) => {
     set((state) => ({
