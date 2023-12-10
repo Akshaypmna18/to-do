@@ -14,10 +14,7 @@ import { Button } from "../ui/button";
 import useTodo from "../../states";
 
 function TodoClear() {
-  const { todos, setTodos } = useTodo((state) => ({
-    todos: state.todos,
-    setTodos: state.setTodos,
-  }));
+  const { todos, setTodos } = useTodo((state) => state);
   const [isTodo, setIsTodo] = useState(false);
   useEffect(() => {
     todos.length > 0 ? setIsTodo(true) : setIsTodo(false);

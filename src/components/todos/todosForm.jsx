@@ -4,10 +4,7 @@ import { Button } from "../ui/button";
 import useTodo from "../../states";
 
 function TodosInput() {
-  const { todos, addTodo } = useTodo((state) => ({
-    todos: state.todos,
-    addTodo: state.addTodo,
-  }));
+  const { todos, addTodo } = useTodo((state) => state);
   const [todo, setTodo] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();

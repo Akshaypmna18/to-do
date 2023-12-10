@@ -4,11 +4,7 @@ import useTodo from "../../../states";
 import { CheckBoxEle, EditTodoEle, DeleteTodoEle } from "./todosListElements";
 
 function TodosList() {
-  const { todos, toggleTodoStatus, setTodos } = useTodo((state) => ({
-    todos: state.todos,
-    toggleTodoStatus: state.toggleTodoStatus,
-    setTodos: state.setTodos,
-  }));
+  const { todos, toggleTodoStatus, setTodos } = useTodo((state) => state);
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
   const handleOnDragEnd = (result) => {
     const { source, destination } = result;
