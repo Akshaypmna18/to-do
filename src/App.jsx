@@ -6,7 +6,7 @@ import TodosList from "./components/todos/todosList/todosList";
 
 function App() {
   return (
-    <section className="min-h-[100dvh] lg:mx-[calc(5rem+5dvw)] bg-white dark:bg-[hsl(222,84,4.9)] relative flex flex-col items-center select-none">
+    <main className="min-h-[100dvh] lg:mx-[calc(5rem+5dvw)] bg-white dark:bg-[hsl(222,84,4.9)] relative flex flex-col items-center select-none">
       <Theme />
 
       <h1 className="text-[calc(1rem+4vw)] mt-[calc(5rem+5vh)] font-[poppins] font-bold">
@@ -18,7 +18,7 @@ function App() {
       <TodosList />
 
       <TodoClear />
-    </section>
+    </main>
   );
 }
 
