@@ -32,7 +32,7 @@ import { Button } from "../../ui/button";
 import useTodo from "../../../states";
 
 export const CheckBoxEle = ({ status, id }) => {
-  const toggleTodoStatus = useTodo((state) => state.toggleTodoStatus);
+  const { toggleTodoStatus } = useTodo((state) => state);
   return (
     <TooltipProvider>
       <Tooltip>
@@ -55,8 +55,7 @@ export const CheckBoxEle = ({ status, id }) => {
 
 export const EditTodoEle = ({ id, text }) => {
   const [todo, setTodo] = useState(text);
-  const updateTodo = useTodo((state) => state.updateTodo);
-  const todos = useTodo((state) => state.todos);
+  const { updateTodo, todos } = useTodo((state) => state);
   const handleUpdate = (id, todo) => {
     if (!todos.some((item) => item.text === todo.trim())) updateTodo(id, todo);
     else alert("Same task already exists");
@@ -93,7 +92,7 @@ export const EditTodoEle = ({ id, text }) => {
 };
 
 export const DeleteTodoEle = ({ status, id }) => {
-  const removeTodo = useTodo((state) => state.removeTodo);
+  const { removeTodo } = useTodo((state) => state);
   return (
     <AlertDialog>
       <AlertDialogTrigger>
