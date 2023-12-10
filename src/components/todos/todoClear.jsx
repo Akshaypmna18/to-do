@@ -11,7 +11,7 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
-import useTodo from "../../states";
+import useTodo from "../../store";
 
 function TodoClear() {
   const { todos, setTodos } = useTodo((state) => state);

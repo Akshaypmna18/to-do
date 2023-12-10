@@ -29,7 +29,7 @@ import {
 } from "../../ui/dialog";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
-import useTodo from "../../../states";
+import useTodo from "../../../store";
 
 export const CheckBoxEle = ({ status, id }) => {
   const { toggleTodoStatus } = useTodo((state) => state);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import useTodo from "../../states";
+import useTodo from "../../store";
 
 function TodosInput() {
   const { todos, addTodo } = useTodo((state) => state);
