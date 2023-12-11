@@ -2,7 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 </br></br>
-⭐It is completely responsive, supports CRUD operations, and has both dark and light themes. The data is stored in local storage.
+⭐It :
+<ul>
+  <li>is completely responsive</li>
+  <li>supports CRUD operations</li>
+  <li>has both dark and light themes</li>
+  <li>stores data in local storage</li>
+</ul>
 </br>
 
 ⭐Used :
