@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 </br></br>
-⭐It is completely responsive, and has a dark and light theme. The data is stored in the local storage.
+⭐It is completely responsive, supports CRUD operations, and has both dark and light themes. The data is stored in local storage.
 </br>
 
 ⭐Used :
@@ -16,6 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 </br>
 
 ⭐Demo Link : https://aks-to-do.vercel.app
+</br>
 
 ![Untitled](https://github.com/Akshaypmna18/to-do/assets/67232475/27056be2-719e-4ad4-8708-16ab24a3a808)
 
