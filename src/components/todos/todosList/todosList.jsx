@@ -43,7 +43,7 @@ function TodosList() {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                        className={`flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 px-4 border hover:border-yellow-500 rounded ${
+                        className={`flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 border hover:border-yellow-500 rounded ${
                           status
                             ? "line-through text-gray-500 hover:border-yellow-200"
                             : ""
@@ -51,7 +51,7 @@ function TodosList() {
                       >
                         <CheckBoxEle status={status} id={id} />
                         <span
-                          className="flex-grow text-center"
+                          className="flex-grow text-center mx-8"
                           onClick={() => toggleTodoStatus(id)}
                         >
                           {capitalize(text)}

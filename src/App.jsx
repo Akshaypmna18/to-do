@@ -1,6 +1,6 @@
 import React from "react";
 import Theme from "./components/theme";
-import TodosInput from "./components/todos/todosForm";
+import TodosForm from "./components/todos/todosForm";
 import TodoClear from "./components/todos/todoClear";
 import TodosList from "./components/todos/todosList/todosList";
 
@@ -13,7 +13,7 @@ function App() {
         Just do it.<span className="animate-pulse">|</span>
       </h1>
 
-      <TodosInput />
+      <TodosForm />
 
       <TodosList />
 

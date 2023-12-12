@@ -3,7 +3,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import useTodo from "../../store";
 
-function TodosInput() {
+function TodosForm() {
   const { todos, addTodo } = useTodo((state) => state);
   const [todo, setTodo] = useState("");
   const handleSubmit = (e) => {
@@ -40,4 +40,4 @@ function TodosInput() {
   );
 }
 
-export default TodosInput;
+export default TodosForm;
