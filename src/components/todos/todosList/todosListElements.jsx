@@ -1,16 +1,5 @@
 import React, { useState } from "react";
 import { Checkbox } from "../../ui/checkbox";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "../../ui/alert-dialog";
 import { TrashIcon, Pencil2Icon } from "@radix-ui/react-icons";
 import {
   Tooltip,
@@ -94,41 +83,18 @@ export const EditTodoEle = ({ id, text }) => {
 export const DeleteTodoEle = ({ status, id }) => {
   const { removeTodo } = useTodo((state) => state);
   return (
-    <AlertDialog>
-      <AlertDialogTrigger>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <TrashIcon
-                className={`h-[calc(1rem+1vw)] w-[calc(1rem+1vw)] mt-1 ml-4 cursor-pointer ${
-                  status ? "text-red-800" : "hover:text-red-800"
-                }`}
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Delete this task</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your task
-            from our servers.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            className="bg-red-800 text-white sm:bg-primary sm:text-secondary hover:bg-red-800 hover:text-white"
-            onClick={() => removeTodo(id)}
-          >
-            Continue
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <TrashIcon
+          className={`h-[calc(1rem+1vw)] w-[calc(1rem+1vw)] mt-1 ml-4 cursor-pointer ${
+            status ? "text-red-800" : "hover:text-red-800"
+          }`}
+          onClick={() => removeTodo(id)}
+        />
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Delete this task</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
