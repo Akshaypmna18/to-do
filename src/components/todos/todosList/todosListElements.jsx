@@ -83,18 +83,20 @@ export const EditTodoEle = ({ id, text }) => {
 export const DeleteTodoEle = ({ status, id }) => {
   const { removeTodo } = useTodo((state) => state);
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <TrashIcon
-          className={`h-[calc(1rem+1vw)] w-[calc(1rem+1vw)] mt-1 ml-4 cursor-pointer ${
-            status ? "text-red-800" : "hover:text-red-800"
-          }`}
-          onClick={() => removeTodo(id)}
-        />
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>Delete this task</p>
-      </TooltipContent>
-    </Tooltip>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <TrashIcon
+            className={`h-[calc(1rem+1vw)] w-[calc(1rem+1vw)] mt-1 ml-4 cursor-pointer ${
+              status ? "text-red-800" : "hover:text-red-800"
+            }`}
+            onClick={() => removeTodo(id)}
+          />
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Delete this task</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
