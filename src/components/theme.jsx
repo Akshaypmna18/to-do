@@ -8,7 +8,7 @@ import {
 } from "./ui/tooltip";
 
 function Theme() {
-  const iconClassName = `absolute top-12 right-8 w-[calc(1rem+1.5dvw)] h-[calc(1rem+1.5dvw)] cursor-pointer`;
+  const iconClassName = `absolute top-12 right-8 w-[calc(1.5rem+1dvw)] h-[calc(1.5rem+1dvw)] cursor-pointer`;
 
   const getTheme = () => {
     let savedTheme = localStorage.getItem("theme");

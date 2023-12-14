@@ -69,7 +69,7 @@ function TodosForm() {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button className="font-[poppins] fixed right-8 bottom-12 lg:right-[calc(7rem+5dvw)] h-[calc(2rem+1vw)] aspect-square text-[calc(1.5rem+.5vw)] whitespace-nowrap p-3 rounded-full">
+              <Button className="font-[poppins] fixed right-8 bottom-12 text-[calc(2rem+1vw)] rounded-full h-[calc(2.5rem+1vw)] w-[calc(2.5rem+1vw)]">
                 +
               </Button>
             </TooltipTrigger>
@@ -85,25 +85,23 @@ function TodosForm() {
             Add Task
           </DialogTitle>
         </DialogHeader>
-        <form action="">
-          <Input
-            placeholder="Enter the task..."
-            onChange={(e) => setTodo(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") e.preventDefault();
-            }}
-          />
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button
-                className="text-[calc(1rem+.5vw)] mt-4"
-                onClick={(e) => handleSubmit(e)}
-              >
-                Add
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </form>
+        <Input
+          placeholder="Enter the task..."
+          onChange={(e) => setTodo(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") e.preventDefault();
+          }}
+        />
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              className="text-[calc(1rem+.5vw)] mt-4"
+              onClick={(e) => handleSubmit(e)}
+            >
+              Add
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
