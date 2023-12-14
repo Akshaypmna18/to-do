@@ -27,7 +27,7 @@ export const CheckBoxEle = ({ status, id }) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <Checkbox
-            className={`hover:border-green-800 ml-1 h-6 w-6 ${
+            className={`hover:border-green-800 ml-1 min-h-[1.5rem] min-w-[1.5rem] ${
               status ? "border-green-800" : ""
             }`}
             checked={status}
@@ -55,7 +55,7 @@ export const EditTodoEle = ({ id, text }) => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Pencil2Icon className="h-6 w-6 cursor-pointer hover:text-rose-500" />
+              <Pencil2Icon className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500" />
             </TooltipTrigger>
             <TooltipContent>
               <p>Update this task</p>
@@ -87,7 +87,7 @@ export const DeleteTodoEle = ({ status, id }) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <TrashIcon
-            className={`h-6 w-6 mt-1 ml-4 cursor-pointer ${
+            className={`min-h-[1.5rem] min-w-[1.5rem] mt-1 ml-4 cursor-pointer ${
               status ? "text-red-800" : "hover:text-red-800"
             }`}
             onClick={() => removeTodo(id)}
