@@ -22,11 +22,11 @@ function TodoClear() {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger asChild>
         <Button
           className={
             isTodo
-              ? ` font-[poppins] text-[calc(1rem+.5vw)] px-4 py-5 max-w-[10rem] mx-auto mb-8`
+              ? ` font-[poppins] text-[calc(1rem+.5vw)] px-2 max-w-[10rem] mx-auto mb-8`
               : `hidden`
           }
         >
