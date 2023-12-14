@@ -28,6 +28,10 @@ const todo = (set) => ({
       ),
     }));
   },
+  screenWidth: window.innerWidth,
+  updateScreenWidth: (width) => {
+    set(() => ({ screenWidth: width }));
+  },
 });
 
 const useTodo = create(

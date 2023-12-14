@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import {
@@ -19,9 +19,13 @@ import {
 import useTodo from "../../store";
 
 function TodosForm() {
-  const { todos, addTodo } = useTodo((state) => state);
+  const { todos, addTodo, screenWidth, updateScreenWidth } = useTodo(
+    (state) => state
+  );
   const [todo, setTodo] = useState("");
+
   const handleSubmit = (e) => {
+    if (screenWidth > 600) e.preventDefault();
     if (!todo.trim()) alert("Enter a task");
     else {
       if (!todos.some((item) => item.text === todo.trim())) {
@@ -31,7 +35,35 @@ function TodosForm() {
     setTodo("");
   };
 
-  return (
+  const handleResize = () => updateScreenWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return screenWidth > 600 ? (
+    <form className="flex items-center mt-4 w-[min(95%,30rem)] justify-center">
+      <Input
+        placeholder="Enter the task..."
+        className="font-[poppins]"
+        onChange={(e) => setTodo(e.target.value)}
+        autoFocus
+        value={todo}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSubmit(e);
+        }}
+      />
+      <Button
+        className="font-[poppins] h-[calc(2rem+1vw)] text-[calc(1rem+.5vw)] whitespace-nowrap px-2"
+        onClick={(e) => handleSubmit(e)}
+      >
+        Add task
+      </Button>
+    </form>
+  ) : (
     <Dialog>
       <DialogTrigger>
         <TooltipProvider>

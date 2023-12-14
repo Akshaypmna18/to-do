@@ -42,7 +42,7 @@ function TodosList() {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                        className={`flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 border hover:border-yellow-500 rounded ${
+                        className={`flex items-center shadow justify-between text-[calc(1rem+.5vw)] p-2 border hover:border-yellow-500 rounded grow max-w-[90dvw] ${
                           status
                             ? "line-through text-gray-500 hover:border-yellow-200"
                             : ""
