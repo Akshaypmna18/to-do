@@ -72,7 +72,12 @@ export const EditTodoEle = ({ id, text }) => {
         <Input defaultValue={text} onChange={(e) => setTodo(e.target.value)} />
         <DialogFooter>
           <DialogClose asChild>
-            <Button onClick={() => handleUpdate(id, todo)}>Update</Button>
+            <Button
+              onClick={() => handleUpdate(id, todo)}
+              className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
+            >
+              Update
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
