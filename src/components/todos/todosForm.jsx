@@ -95,7 +95,7 @@ function TodosForm() {
         <DialogFooter>
           <DialogClose asChild>
             <Button
-              className="text-[calc(1rem+.5vw)]"
+              className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
               onClick={(e) => handleSubmit(e)}
             >
               Add
