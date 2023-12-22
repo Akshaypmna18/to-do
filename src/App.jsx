@@ -1,5 +1,4 @@
 import React from "react";
-import Theme from "./components/Theme";
 import TodosForm from "./components/todos/TodosForm";
 import TodoClear from "./components/todos/TodoClear";
 import TodosList from "./components/todos/todosList/TodosList";
@@ -8,6 +7,7 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
 } from "./components/ui/alert-dialog";
+import Theme from "./components/Theme";
 
 function App() {
   const Content = () => (
