@@ -24,5 +24,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ⭐Demo Link : https://aks-to-do.vercel.app
 </br>
 
-![Untitled](https://github.com/Akshaypmna18/to-do/assets/67232475/27056be2-719e-4ad4-8708-16ab24a3a808)
+![Untitled](https://github.com/Akshaypmna18/to-do/assets/67232475/5ae73168-274d-4412-8b5f-8b9d06362b6a)
+
 
