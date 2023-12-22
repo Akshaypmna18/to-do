@@ -1,107 +1,87 @@
 import React, { useState } from "react";
 import { Checkbox } from "../../ui/checkbox";
 import { TrashIcon, Pencil2Icon } from "@radix-ui/react-icons";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../../ui/tooltip";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../../ui/dialog";
+import { DialogFooter } from "../../ui/dialog";
+import DialogModal from "../../DialogModal";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import useTodo from "../../../store";
+import ToolTipComp from "../../ToolTip";
 
 export const CheckBoxEle = ({ status, id }) => {
   const { toggleTodoStatus } = useTodo((state) => state);
+  const Content = () => <p>{status ? `Uncheck` : `Check`}</p>;
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Checkbox
-            className={`hover:border-green-800 ml-1 min-h-[1.5rem] min-w-[1.5rem] ${
-              status ? "border-green-800" : ""
-            }`}
-            checked={status}
-            onCheckedChange={() => toggleTodoStatus(id)}
-          />
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>{status ? `Uncheck` : `Check`}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
-};
-
-export const EditTodoEle = ({ id, text }) => {
-  const [todo, setTodo] = useState(text);
-  const { updateTodo, todos } = useTodo((state) => state);
-  const handleUpdate = (id, todo) => {
-    if (!todos.some((item) => item.text === todo.trim())) updateTodo(id, todo);
-    else alert("Same task already exists");
-  };
-  return (
-    <Dialog>
-      <DialogTrigger>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Pencil2Icon className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500" />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Update this task</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </DialogTrigger>
-      <DialogContent className="max-w-[400px]">
-        <DialogHeader>
-          <DialogTitle>
-            <p className="bold text-[calc(1.25rem+1vw)]">Update Todo</p>
-          </DialogTitle>
-        </DialogHeader>
-        <Input defaultValue={text} onChange={(e) => setTodo(e.target.value)} />
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button
-              onClick={() => handleUpdate(id, todo)}
-              className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
-            >
-              Update
-            </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <ToolTipComp Content={() => <Content />}>
+      <Checkbox
+        className={`hover:border-green-800 ml-1 min-h-[1.5rem] min-w-[1.5rem] ${
+          status ? "border-green-800" : ""
+        }`}
+        checked={status}
+        onCheckedChange={() => toggleTodoStatus(id)}
+      />
+    </ToolTipComp>
   );
 };
 
 export const DeleteTodoEle = ({ status, id }) => {
   const { removeTodo } = useTodo((state) => state);
+  const Content = () => <p>Delete this task</p>;
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <TrashIcon
-            className={`min-h-[1.5rem] min-w-[1.5rem] mt-1 ml-4 cursor-pointer ${
-              status ? "text-red-800" : "hover:text-red-800"
-            }`}
-            onClick={() => removeTodo(id)}
-          />
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Delete this task</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <ToolTipComp Content={() => <Content />}>
+      <TrashIcon
+        className={`min-h-[1.5rem] min-w-[1.5rem] mt-1 ml-4 cursor-pointer ${
+          status ? "text-red-800" : "hover:text-red-800"
+        }`}
+        onClick={() => removeTodo(id)}
+      />
+    </ToolTipComp>
+  );
+};
+
+export const EditTodoEle = ({ id, text }) => {
+  const [open, setOpen] = useState(false);
+
+  const Content = () => {
+    const [todo, setTodo] = useState(text);
+    const { updateTodo, todos } = useTodo((state) => state);
+    const handleUpdate = (id, todo) => {
+      if (!todos.some((item) => item.text === todo.trim())) {
+        updateTodo(id, todo);
+        setOpen(false);
+      } else alert("Same task already exists");
+    };
+
+    return (
+      <>
+        <Input
+          className="font-[poppins]"
+          defaultValue={text}
+          onChange={(e) => setTodo(e.target.value)}
+        />
+        <DialogFooter>
+          <Button
+            onClick={() => {
+              handleUpdate(id, todo);
+            }}
+            className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
+          >
+            Update
+          </Button>
+        </DialogFooter>
+      </>
+    );
+  };
+
+  const ToolTipContent = () => <p>Update this task</p>;
+  return (
+    <DialogModal open={open} title={"Update todo"} Content={() => <Content />}>
+      <ToolTipComp Content={() => <ToolTipContent />}>
+        <Pencil2Icon
+          onClick={() => setOpen()}
+          className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500"
+        />
+      </ToolTipComp>
+    </DialogModal>
   );
 };

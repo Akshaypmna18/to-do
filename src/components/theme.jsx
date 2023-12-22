@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
+import ToolTipComp from "./ToolTip";
 
 function Theme() {
   const iconClassName = `absolute top-12 right-8 w-[calc(1.5rem+1dvw)] h-[calc(1.5rem+1dvw)] cursor-pointer`;
@@ -28,22 +23,17 @@ function Theme() {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
+  const Content = () => <p>Click to toggle theme</p>;
+
   return (
     <>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            {theme === "light" ? (
-              <MoonIcon className={iconClassName} onClick={toggleTheme} />
-            ) : (
-              <SunIcon className={iconClassName} onClick={toggleTheme} />
-            )}
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Click to toggle theme</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <ToolTipComp Content={() => <Content />}>
+        {theme === "light" ? (
+          <MoonIcon className={iconClassName} onClick={toggleTheme} />
+        ) : (
+          <SunIcon className={iconClassName} onClick={toggleTheme} />
+        )}
+      </ToolTipComp>
     </>
   );
 }
