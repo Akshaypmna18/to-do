@@ -15,7 +15,6 @@ function App() {
       <AlertDialogAction>Okay</AlertDialogAction>
     </AlertDialogFooter>
   );
-  console.log("hi");
   const Desc = () => (
     <>
       You can <strong>prioritize</strong> tasks through
