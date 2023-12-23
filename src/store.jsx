@@ -32,6 +32,10 @@ const todo = (set) => ({
   updateScreenWidth: (width) => {
     set(() => ({ screenWidth: width }));
   },
+  isOpen: false,
+  setIsOpen: (value) => {
+    set(() => ({ isOpen: value }));
+  },
 });
 
 const useTodo = create(

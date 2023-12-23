@@ -40,18 +40,18 @@ export const DeleteTodoEle = ({ status, id }) => {
 };
 
 export const EditTodoEle = ({ id, text }) => {
-  const [open, setOpen] = useState(false);
-
+  const { updateTodo, todos, isOpen, setIsOpen } = useTodo((state) => state);
   const Content = () => {
     const [todo, setTodo] = useState(text);
-    const { updateTodo, todos } = useTodo((state) => state);
     const handleUpdate = (id, todo) => {
-      if (!todos.some((item) => item.text === todo.trim())) {
-        updateTodo(id, todo);
-        setOpen(false);
-      } else alert("Same task already exists");
+      if (!todo.trim()) alert("Enter a task");
+      else {
+        if (!todos.some((item) => item.text === todo.trim())) {
+          updateTodo(id, todo);
+          setIsOpen(false);
+        } else alert("Same task already exists");
+      }
     };
-
     return (
       <>
         <Input
@@ -75,10 +75,14 @@ export const EditTodoEle = ({ id, text }) => {
 
   const ToolTipContent = () => <p>Update this task</p>;
   return (
-    <DialogModal open={open} title={"Update todo"} Content={() => <Content />}>
+    <DialogModal
+      open={isOpen}
+      title={"Update todo"}
+      Content={() => <Content />}
+    >
       <ToolTipComp Content={() => <ToolTipContent />}>
         <Pencil2Icon
-          onClick={() => setOpen()}
+          onClick={() => setIsOpen()}
           className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500"
         />
       </ToolTipComp>
