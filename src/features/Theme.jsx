@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
-import ToolTipComp from "./ToolTip";
+import ToolTipComp from "../components/ToolTip";
 
 function Theme() {
   const iconClassName = `absolute top-12 right-8 w-[calc(1.5rem+1dvw)] h-[calc(1.5rem+1dvw)] cursor-pointer`;

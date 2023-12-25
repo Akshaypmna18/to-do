@@ -1,7 +1,7 @@
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useTodo from "../../../store";
-import { CheckBoxEle, EditTodoEle, DeleteTodoEle } from "./todosListElements";
+import { CheckBoxEle, EditTodoEle, DeleteTodoEle } from "./TodosEle";
 
 function TodosList() {
   const { todos, toggleTodoStatus, setTodos } = useTodo((state) => state);

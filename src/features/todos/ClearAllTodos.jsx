@@ -3,14 +3,15 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogFooter,
-} from "../ui/alert-dialog";
-import { Button } from "../ui/button";
+} from "../../components/ui/alert-dialog";
+import { Button } from "../../components/ui/button";
 import useTodo from "../../store";
-import AlertDialogModal from "../AlertDialogModal";
+import AlertDialogModal from "../../components/AlertDialogModal";
 
-function TodoClear() {
+function ClearAllTodos() {
   const { todos, setTodos } = useTodo((state) => state);
   const [isTodo, setIsTodo] = useState(false);
+
   useEffect(() => {
     todos.length > 0 ? setIsTodo(true) : setIsTodo(false);
   }, [todos]);
@@ -55,4 +56,4 @@ function TodoClear() {
   );
 }
 
-export default TodoClear;
+export default ClearAllTodos;

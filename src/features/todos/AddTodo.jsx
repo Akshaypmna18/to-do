@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import useTodo from "../../store";
-import DialogModal from "../DialogModal";
-import { DialogFooter } from "../ui/dialog";
+import DialogModal from "../../components/DialogModal";
+import { DialogFooter } from "../../components/ui/dialog";
 
-function TodosForm() {
+function AddTodo() {
   const { todos, addTodo, screenWidth, updateScreenWidth, isOpen, setIsOpen } =
     useTodo((state) => state);
 
@@ -108,4 +108,4 @@ function TodosForm() {
   );
 }
 
-export default TodosForm;
+export default AddTodo;
