@@ -40,7 +40,8 @@ export const DeleteTodoEle = ({ status, id }) => {
 };
 
 export const EditTodoEle = ({ id, text }) => {
-  const { updateTodo, todos, isOpen, setIsOpen } = useTodo((state) => state);
+  const { updateTodo, todos } = useTodo((state) => state);
+  const [isOpen, setIsOpen] = useState(false);
   const Content = () => {
     const [todo, setTodo] = useState(text);
     const handleUpdate = (id, todo) => {

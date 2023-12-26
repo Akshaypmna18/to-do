@@ -34,11 +34,6 @@ const todo = (set) => ({
   updateScreenWidth: (width) => {
     set(() => ({ screenWidth: width }));
   },
-  // components
-  isOpen: false,
-  setIsOpen: (value) => {
-    set(() => ({ isOpen: value }));
-  },
   // for clear list button
   isTodo: false,
   setIsTodo: () => {
