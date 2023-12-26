@@ -11,12 +11,14 @@ function Tip() {
       <AlertDialogAction>Okay</AlertDialogAction>
     </AlertDialogFooter>
   );
+
   const Desc = () => (
     <>
       You can <strong>prioritize</strong> tasks through
       <strong> drag and drop</strong>
     </>
   );
+
   return (
     <AlertDialogModal
       Content={() => <Content />}

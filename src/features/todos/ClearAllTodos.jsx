@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   AlertDialogAction,
   AlertDialogCancel,
@@ -9,11 +9,10 @@ import useTodo from "../../store";
 import AlertDialogModal from "../../components/AlertDialogModal";
 
 function ClearAllTodos() {
-  const { todos, setTodos } = useTodo((state) => state);
-  const [isTodo, setIsTodo] = useState(false);
+  const { todos, setTodos, isTodo, setIsTodo } = useTodo((state) => state);
 
   useEffect(() => {
-    todos.length > 0 ? setIsTodo(true) : setIsTodo(false);
+    setIsTodo();
   }, [todos]);
 
   const Content = () => (
@@ -37,23 +36,17 @@ function ClearAllTodos() {
     </>
   );
 
-  return (
+  return isTodo ? (
     <AlertDialogModal
       Content={() => <Content />}
       title={"Are you absolutely sure?"}
       Desc={() => <Desc />}
     >
-      <Button
-        className={
-          isTodo
-            ? ` font-[poppins] text-[calc(1rem+.5vw)] px-2 max-w-[10rem] mx-auto mb-8`
-            : `hidden`
-        }
-      >
+      <Button className="font-[poppins] text-[calc(1rem+.5vw)] px-2 max-w-[10rem] mx-auto mb-8">
         Clear List
       </Button>
     </AlertDialogModal>
-  );
+  ) : null;
 }
 
 export default ClearAllTodos;
