@@ -11,16 +11,6 @@ const todo = (set) => ({
       todos: state.todos.filter((todo) => todo.id !== todoId),
     }));
   },
-  toggleTodoStatus: (todoId) => {
-    set((state) => ({
-      todos: state.todos.map((todo) =>
-        todo.id === todoId ? { ...todo, status: !todo.status } : todo
-      ),
-    }));
-  },
-  setTodos: (todo) => {
-    set(() => ({ todos: todo }));
-  },
   updateTodo: (todoId, todoText) => {
     set((state) => ({
       todos: state.todos.map((todo) =>
@@ -28,14 +18,35 @@ const todo = (set) => ({
       ),
     }));
   },
+  toggleTodoStatus: (todoId) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === todoId ? { ...todo, status: !todo.status } : todo
+      ),
+    }));
+  },
+  // to update todos
+  setTodos: (todo) => {
+    set(() => ({ todos: todo }));
+  },
+  //to update add todo method
   screenWidth: window.innerWidth,
   updateScreenWidth: (width) => {
     set(() => ({ screenWidth: width }));
   },
+  // components
   isOpen: false,
   setIsOpen: (value) => {
     set(() => ({ isOpen: value }));
   },
+  // for clear list button
+  isTodo: false,
+  setIsTodo: () => {
+    set((state) => ({ isTodo: state.todos.length > 0 ? true : false }));
+  },
+  // for individual todo
+  // todo: "",
+  // setTodo: (value) => ({ todo: value }),
 });
 
 const useTodo = create(
