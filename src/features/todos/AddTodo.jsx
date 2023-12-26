@@ -99,7 +99,7 @@ function AddTodo() {
   ) : (
     <DialogModal title={"Add task"} Content={() => <Content />} open={isOpen}>
       <Button
-        onClick={() => setIsOpen()}
+        onClick={() => setIsOpen(true)}
         className="font-[poppins] fixed right-[calc(2.5rem+1vw)] bottom-[calc(3rem+1vh)] text-[calc(2rem+1vw)] rounded-full h-[calc(2.5rem+1vw)] w-[calc(2.5rem+1vw)]"
       >
         +

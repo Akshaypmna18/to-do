@@ -44,9 +44,6 @@ const todo = (set) => ({
   setIsTodo: () => {
     set((state) => ({ isTodo: state.todos.length > 0 ? true : false }));
   },
-  // for individual todo
-  // todo: "",
-  // setTodo: (value) => ({ todo: value }),
 });
 
 const useTodo = create(
