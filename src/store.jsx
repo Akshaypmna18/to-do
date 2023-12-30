@@ -43,14 +43,15 @@ const todo = (set, get) => ({
   setTodo: (value) => {
     set(() => ({ todo: value }));
   },
+  // Modal control
   isOpen: false,
   setIsOpen: (value) => {
     set(() => ({ isOpen: value }));
   },
   handleTodo: (todo, id) => {
-    if (!todo.trim()) alert("Enter a task");
+    if (!todo) alert("Enter a task");
     else {
-      if (!get().todos.some((item) => item.text === todo.trim())) {
+      if (!get().todos.some((item) => item.text === todo)) {
         if (id) {
           get().updateTodo(id, todo);
         } else {
