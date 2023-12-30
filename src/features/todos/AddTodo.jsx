@@ -27,7 +27,7 @@ function AddTodo() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleTodo(todo);
+    handleTodo(todo.trim());
   };
 
   const Content = () => {
@@ -39,13 +39,13 @@ function AddTodo() {
           placeholder="Enter the task..."
           onChange={(e) => setTodo(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") handleTodo(todo);
+            if (e.key === "Enter") handleTodo(todo.trim());
           }}
         />
         <DialogFooter>
           <Button
             className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
-            onClick={() => handleTodo(todo)}
+            onClick={() => handleTodo(todo.trim())}
           >
             Add
           </Button>

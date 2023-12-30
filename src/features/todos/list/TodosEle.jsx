@@ -53,7 +53,7 @@ export const EditTodoEle = ({ id, text }) => {
         <DialogFooter>
           <Button
             onClick={() => {
-              handleTodo(todo, id);
+              handleTodo(todo.trim(), id);
             }}
             className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
           >
