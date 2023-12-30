@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-const todo = (set) => ({
+const todo = (set, get) => ({
   todos: [],
   addTodo: (todo) => {
     set((state) => ({ todos: [...state.todos, todo] }));
@@ -38,6 +38,28 @@ const todo = (set) => ({
   isTodo: false,
   setIsTodo: () => {
     set((state) => ({ isTodo: state.todos.length > 0 ? true : false }));
+  },
+  todo: "",
+  setTodo: (value) => {
+    set(() => ({ todo: value }));
+  },
+  isOpen: false,
+  setIsOpen: (value) => {
+    set(() => ({ isOpen: value }));
+  },
+  handleTodo: (todo, id) => {
+    if (!todo.trim()) alert("Enter a task");
+    else {
+      if (!get().todos.some((item) => item.text === todo.trim())) {
+        if (id) {
+          get().updateTodo(id, todo);
+        } else {
+          get().addTodo({ id: Date.now(), text: todo, status: false });
+        }
+        get().setTodo("");
+        get().setIsOpen(false);
+      } else alert("Same task already exists");
+    }
   },
 });
 

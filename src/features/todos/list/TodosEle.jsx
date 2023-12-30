@@ -40,19 +40,9 @@ export const DeleteTodoEle = ({ status, id }) => {
 };
 
 export const EditTodoEle = ({ id, text }) => {
-  const { updateTodo, todos } = useTodo((state) => state);
-  const [isOpen, setIsOpen] = useState(false);
+  const { handleTodo, isOpen, setIsOpen } = useTodo((state) => state);
   const Content = () => {
     const [todo, setTodo] = useState(text);
-    const handleUpdate = (id, todo) => {
-      if (!todo.trim()) alert("Enter a task");
-      else {
-        if (!todos.some((item) => item.text === todo.trim())) {
-          updateTodo(id, todo);
-          setIsOpen(false);
-        } else alert("Same task already exists");
-      }
-    };
     return (
       <>
         <Input
@@ -63,7 +53,7 @@ export const EditTodoEle = ({ id, text }) => {
         <DialogFooter>
           <Button
             onClick={() => {
-              handleUpdate(id, todo);
+              handleTodo(todo, id);
             }}
             className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
           >

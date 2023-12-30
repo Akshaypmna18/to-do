@@ -7,11 +7,15 @@ import DialogModal from "../../components/DialogModal";
 import { DialogFooter } from "../../components/ui/dialog";
 
 function AddTodo() {
-  const { todos, addTodo, screenWidth, updateScreenWidth } = useTodo(
-    (state) => state
-  );
-  const [isOpen, setIsOpen] = useState(false);
-  const [todo, setTodo] = useState("");
+  const {
+    screenWidth,
+    updateScreenWidth,
+    handleTodo,
+    todo,
+    setTodo,
+    isOpen,
+    setIsOpen,
+  } = useTodo((state) => state);
 
   const handleResize = () => updateScreenWidth(window.innerWidth);
   useEffect(() => {
@@ -22,28 +26,12 @@ function AddTodo() {
   }, []);
 
   const handleSubmit = (e) => {
-    if (screenWidth > 600) e.preventDefault();
-    if (!todo.trim()) alert("Enter a task");
-    else {
-      if (!todos.some((item) => item.text === todo.trim())) {
-        addTodo({ id: Date.now(), text: todo, status: false });
-        setTodo("");
-      } else alert("Same task already exists");
-    }
+    e.preventDefault();
+    handleTodo(todo);
   };
 
   const Content = () => {
     const [todo, setTodo] = useState("");
-    const handleSubmit = () => {
-      if (!todo.trim()) alert("Enter a task");
-      else {
-        if (!todos.some((item) => item.text === todo.trim())) {
-          addTodo({ id: Date.now(), text: todo, status: false });
-          setTodo("");
-          setIsOpen(false);
-        } else alert("Same task already exists");
-      }
-    };
     return (
       <>
         <Input
@@ -51,13 +39,13 @@ function AddTodo() {
           placeholder="Enter the task..."
           onChange={(e) => setTodo(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") e.preventDefault();
+            if (e.key === "Enter") handleTodo(todo);
           }}
         />
         <DialogFooter>
           <Button
             className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
-            onClick={handleSubmit}
+            onClick={() => handleTodo(todo)}
           >
             Add
           </Button>
@@ -68,9 +56,8 @@ function AddTodo() {
 
   const inputRef = useRef();
   const handleClickOutside = (event) => {
-    if (inputRef.current && !inputRef.current.contains(event.target)) {
+    if (inputRef.current && !inputRef.current.contains(event.target))
       setTodo("");
-    }
   };
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
