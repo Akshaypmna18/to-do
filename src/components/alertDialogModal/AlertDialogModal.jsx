@@ -5,7 +5,7 @@ import {
   AlertDialogHeader,
   AlertDialogDescription,
   AlertDialogContent,
-} from "./ui/alert-dialog";
+} from ".././ui/alert-dialog";
 
 export default function AlertDialogModal({ children, Content, title, Desc }) {
   return (

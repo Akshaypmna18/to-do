@@ -1,5 +1,5 @@
 import React from "react";
-import AlertDialogModal from "../components/AlertDialogModal";
+import AlertDialogModal from "../components/alertDialogModal";
 import {
   AlertDialogFooter,
   AlertDialogAction,

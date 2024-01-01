@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import useTodo from "../../store";
-import DialogModal from "../../components/DialogModal";
+import DialogModal from "../../components/dialogModal";
 import { DialogFooter } from "../../components/ui/dialog";
 
 function AddTodo() {

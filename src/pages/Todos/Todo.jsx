@@ -1,9 +1,9 @@
 import React from "react";
-import AddTodo from "../features/todos/AddTodo";
-import ClearAllTodos from "../features/todos/ClearAllTodos";
-import Todos from "../features/todos/list/Todos";
-import Theme from "../features/Theme";
-import Tip from "../features/Tip";
+import AddTodo from "../../features/todos/AddTodo";
+import ClearAllTodos from "../../features/todos/ClearAllTodos";
+import Todos from "../../features/todos/list/Todos";
+import Theme from "../../features/Theme";
+import Tip from "../../features/Tip";
 
 function Todo() {
   return (

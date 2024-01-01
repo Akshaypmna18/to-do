@@ -6,7 +6,7 @@ import {
 } from "../../components/ui/alert-dialog";
 import { Button } from "../../components/ui/button";
 import useTodo from "../../store";
-import AlertDialogModal from "../../components/AlertDialogModal";
+import AlertDialogModal from "../../components/alertDialogModal";
 
 function ClearAllTodos() {
   const { todos, setTodos, isTodo, setIsTodo } = useTodo((state) => state);

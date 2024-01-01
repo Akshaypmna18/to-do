@@ -4,7 +4,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from ".././ui/tooltip";
 
 export default function ToolTipComp({ children, Content }) {
   return (

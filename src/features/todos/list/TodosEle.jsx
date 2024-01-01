@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Checkbox } from "../../../components/ui/checkbox";
 import { TrashIcon, Pencil2Icon } from "@radix-ui/react-icons";
 import { DialogFooter } from "../../../components/ui/dialog";
-import DialogModal from "../../../components/DialogModal";
+import DialogModal from "../../../components/dialogModal";
 import { Input } from "../../../components/ui/input";
 import { Button } from "../../../components/ui/button";
 import useTodo from "../../../store";
-import ToolTipComp from "../../../components/ToolTip";
+import ToolTipComp from "../../../components/toolTip";
 
 export const CheckBoxEle = ({ status, id }) => {
   const { toggleTodoStatus } = useTodo((state) => state);
