@@ -17,7 +17,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <ul>
   <li>Zustand for state management</li>
   <li>React dnd-kit for drag and drop</li>
-  <li>Storybook for testing components</li>
+  <li>Storybook for testing UI and components</li>
   <li>Shadcn UI for resusable components</li>
   <li>Tailwind CSS for styling</li> 
   <li>Radix UI for icons</li>
