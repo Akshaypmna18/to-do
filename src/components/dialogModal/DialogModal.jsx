@@ -5,9 +5,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
 } from ".././ui/dialog";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
-export default function DialogModal({ children, title, Content, open }) {
+export default function DialogModal({
+  children,
+  title,
+  open,
+  todo,
+  setTodo,
+  func,
+  id,
+  text,
+}) {
   return (
     <Dialog open={open}>
       <DialogTrigger>{children}</DialogTrigger>
@@ -17,7 +29,23 @@ export default function DialogModal({ children, title, Content, open }) {
             <big>{title}</big>
           </DialogTitle>
         </DialogHeader>
-        <Content />
+        <Input
+          className="font-[poppins]"
+          placeholder="Enter the task..."
+          defaultValue={text}
+          onChange={(e) => setTodo(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") func(todo.trim(), id);
+          }}
+        />
+        <DialogFooter>
+          <Button
+            className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
+            onClick={() => func(todo.trim(), id)}
+          >
+            {id ? "Update" : "Add"}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

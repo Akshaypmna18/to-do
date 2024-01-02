@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import useTodo from "../../store";
 import DialogModal from "../../components/dialogModal";
-import { DialogFooter } from "../../components/ui/dialog";
 
 function AddTodo() {
   const {
@@ -28,30 +27,6 @@ function AddTodo() {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleTodo(todo.trim());
-  };
-
-  const Content = () => {
-    const [todo, setTodo] = useState("");
-    return (
-      <>
-        <Input
-          className="font-[poppins]"
-          placeholder="Enter the task..."
-          onChange={(e) => setTodo(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleTodo(todo.trim());
-          }}
-        />
-        <DialogFooter>
-          <Button
-            className="text-[calc(1rem+.5vw)] mx-auto w-[min(90%,10rem)]"
-            onClick={() => handleTodo(todo.trim())}
-          >
-            Add
-          </Button>
-        </DialogFooter>
-      </>
-    );
   };
 
   const inputRef = useRef();
@@ -86,7 +61,13 @@ function AddTodo() {
       </Button>
     </form>
   ) : (
-    <DialogModal title={"Add task"} Content={() => <Content />} open={isOpen}>
+    <DialogModal
+      title={"Add task"}
+      todo={todo}
+      setTodo={setTodo}
+      open={isOpen}
+      func={handleTodo}
+    >
       <Button
         onClick={() => setIsOpen()}
         className="font-[poppins] fixed right-[calc(2.5rem+1vw)] bottom-[calc(3rem+1vh)] text-[calc(2rem+1vw)] rounded-full h-[calc(2.5rem+1vw)] w-[calc(2.5rem+1vw)]"
