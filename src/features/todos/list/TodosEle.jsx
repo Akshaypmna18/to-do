@@ -37,25 +37,15 @@ export const DeleteTodoEle = ({ status, id }) => {
 };
 
 export const EditTodoEle = ({ id, text }) => {
-  const { handleTodo, isOpen, setIsOpen, todo, setTodo } = useTodo(
-    (state) => state
-  );
+  const { setIsOpen } = useTodo((state) => state);
 
   const ToolTipContent = () => <p>Update this task</p>;
 
   return (
-    <DialogModal
-      open={isOpen}
-      title={"Update todo"}
-      todo={todo}
-      setTodo={setTodo}
-      id={id}
-      func={handleTodo}
-      text={text}
-    >
+    <DialogModal id={id} text={text}>
       <ToolTipComp Content={() => <ToolTipContent />}>
         <Pencil2Icon
-          onClick={() => setIsOpen()}
+          onClick={() => setIsOpen(true)}
           className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500"
         />
       </ToolTipComp>
