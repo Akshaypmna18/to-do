@@ -1,5 +1,5 @@
 import React from "react";
-import AddTodo from "../../features/todos/AddTodo";
+import AddTodo from "../../features/todos/addTodo";
 import ClearAllTodos from "../../features/todos/ClearAllTodos";
 import Todos from "../../features/todos/list/Todos";
 import Theme from "../../features/Theme";

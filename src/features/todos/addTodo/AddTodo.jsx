@@ -1,27 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from "react";
-import { Input } from "../../components/ui/input";
-import { Button } from "../../components/ui/button";
-import useTodo from "../../store";
-import DialogModal from "../../components/dialogModal";
+import { Input } from "../../../components/ui/input";
+import { Button } from "../../../components/ui/button";
+import useTodo from "../../../store";
+import DialogModal from "../../../components/dialogModal";
+import useWindowSize from "./useWindowSize";
 
 function AddTodo() {
-  const {
-    screenWidth,
-    updateScreenWidth,
-    handleTodo,
-    todo,
-    setTodo,
-    setIsOpen,
-  } = useTodo((state) => state);
+  const { handleTodo, todo, setTodo, setIsOpen } = useTodo((state) => state);
 
-  const handleResize = () => updateScreenWidth(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const screenWidth = useWindowSize();
 
   const handleSubmit = (e) => {
     e.preventDefault();

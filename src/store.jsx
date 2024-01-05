@@ -29,11 +29,6 @@ const todo = (set, get) => ({
   setTodos: (todo) => {
     set(() => ({ todos: todo }));
   },
-  //to update add todo method
-  screenWidth: window.innerWidth,
-  updateScreenWidth: (width) => {
-    set(() => ({ screenWidth: width }));
-  },
   // for clear list button
   isTodo: false,
   setIsTodo: () => {
