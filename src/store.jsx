@@ -2,6 +2,9 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 const todo = (set, get) => ({
+  theme: "dark",
+  setTheme: (theme) => set({ theme }),
+
   todos: [],
   addTodo: (todo) => {
     set((state) => ({ todos: [...state.todos, todo] }));
@@ -25,24 +28,18 @@ const todo = (set, get) => ({
       ),
     }));
   },
-  // to update todos
-  setTodos: (todo) => {
-    set(() => ({ todos: todo }));
-  },
+  // to update todos after drag and drop
+  setTodos: (todos) => set({ todos }),
   // for clear list button
   isTodo: false,
   setIsTodo: () => {
     set((state) => ({ isTodo: state.todos.length > 0 ? true : false }));
   },
   todo: "",
-  setTodo: (value) => {
-    set(() => ({ todo: value }));
-  },
+  setTodo: (todo) => set({ todo }),
   // Modal control
   isOpen: false,
-  setIsOpen: (value) => {
-    set(() => ({ isOpen: value }));
-  },
+  setIsOpen: (isOpen) => set({ isOpen }),
   handleTodo: (todo, id) => {
     if (!todo) alert("Enter a task");
     else {
@@ -61,9 +58,13 @@ const todo = (set, get) => ({
 
 const useTodo = create(
   devtools(
-    persist(todo, {
-      name: "todos",
-    })
+    persist(
+      todo,
+      {
+        name: "todos",
+      },
+      { name: "theme" }
+    )
   )
 );
 
