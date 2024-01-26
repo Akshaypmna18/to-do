@@ -15,6 +15,9 @@ export default function DialogModal({ children, id, text }) {
   const { handleTodo, todo, setTodo, isOpen, setIsOpen } = useTodo(
     (state) => state
   );
+  const handleClosing = (e) => {
+    e.preventDefault();
+  };
   return (
     <Dialog
       open={isOpen}
@@ -24,7 +27,11 @@ export default function DialogModal({ children, id, text }) {
       }}
     >
       <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent className="max-w-[400px]">
+      <DialogContent
+        className="max-w-[400px]"
+        onEscapeKeyDown={(e) => handleClosing(e)}
+        onInteractOutside={(e) => handleClosing(e)}
+      >
         <DialogHeader>
           <DialogTitle className="bold text-[calc(1.25rem+.5vw)]">
             <big>{id ? "Update Task" : "Add Task"}</big>
