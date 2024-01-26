@@ -16,7 +16,7 @@ export default function DialogModal({ children, id, text }) {
     (state) => state
   );
   const handleClosing = (e) => {
-    e.preventDefault();
+    if (id) e.preventDefault();
   };
   return (
     <Dialog
