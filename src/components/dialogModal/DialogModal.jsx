@@ -16,7 +16,13 @@ export default function DialogModal({ children, id, text }) {
     (state) => state
   );
   return (
-    <Dialog open={isOpen} onOpenChange={() => setIsOpen()}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={() => {
+        setTodo("");
+        setIsOpen();
+      }}
+    >
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="max-w-[400px]">
         <DialogHeader>
