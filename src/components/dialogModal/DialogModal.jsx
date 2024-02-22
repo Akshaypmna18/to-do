@@ -21,9 +21,8 @@ export default function DialogModal({ children, id, text }) {
   return (
     <Dialog
       open={isOpen}
-      onOpenChange={() => {
-        setTodo("");
-        setIsOpen();
+      onOpenChange={(nextIsOpen) => {
+        setIsOpen(nextIsOpen);
       }}
     >
       <DialogTrigger>{children}</DialogTrigger>

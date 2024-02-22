@@ -4,6 +4,12 @@ import { TrashIcon, Pencil2Icon } from "@radix-ui/react-icons";
 import DialogModal from "../../../components/dialogModal";
 import useTodo from "../../../store";
 import ToolTipComp from "../../../components/toolTip";
+import {
+  TooltipDialogDemo,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "../../../components/tooltip-dialog-demo";
 
 export const CheckBoxEle = ({ status, id }) => {
   const { toggleTodoStatus } = useTodo((state) => state);
@@ -37,13 +43,21 @@ export const DeleteTodoEle = ({ status, id }) => {
 };
 
 export const EditTodoEle = ({ id, text }) => {
-  const ToolTipContent = () => <p>Update this task</p>;
+  // const ToolTipContent = () => <p>Update this task</p>;
+
+  // Uncomment this to try tooltip + dialog + demo
+  // return <TooltipDialogDemo />
 
   return (
-    <DialogModal id={id} text={text}>
-      <ToolTipComp Content={() => <ToolTipContent />}>
-        <Pencil2Icon className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500" />
-      </ToolTipComp>
-    </DialogModal>
+    <Tooltip>
+      <DialogModal id={id} text={text}>
+        <TooltipTrigger>
+          <Pencil2Icon className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500" />
+        </TooltipTrigger>
+      </DialogModal>
+      <TooltipContent>
+        <p>Update this task</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
