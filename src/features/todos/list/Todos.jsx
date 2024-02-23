@@ -1,4 +1,3 @@
-import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useTodo from "../../../store";
 import { CheckBoxEle, EditTodoEle, DeleteTodoEle } from "./TodosEle";
@@ -34,29 +33,32 @@ function TodosList() {
             {todos
               .sort((a, b) => (a.status === b.status ? 0 : a.status ? 1 : -1))
               .map((todo, pos) => {
-                const { text, id, status } = todo;
                 return (
-                  <Draggable key={id} draggableId={`${id}`} index={pos}>
+                  <Draggable
+                    key={todo.id}
+                    draggableId={`${todo.id}`}
+                    index={pos}
+                  >
                     {(provided) => (
                       <li
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                         className={`flex items-center shadow justify-between text-[calc(1.25rem+.5vw)] p-2 border hover:border-yellow-500 rounded grow max-w-[90dvw] ${
-                          status
+                          todo.status
                             ? "line-through text-gray-500 hover:border-yellow-200"
                             : ""
                         }`}
                       >
-                        <CheckBoxEle status={status} id={id} />
+                        <CheckBoxEle todo={todo} />
                         <span
                           className="flex-grow text-center mx-8"
-                          onClick={() => toggleTodoStatus(id)}
+                          onClick={() => toggleTodoStatus(todo.id)}
                         >
-                          {capitalize(text)}
+                          {todo.text}
                         </span>
-                        <EditTodoEle text={text} id={id} />
-                        <DeleteTodoEle status={status} id={id} />
+                        <EditTodoEle todo={todo} />
+                        <DeleteTodoEle todo={todo} />
                       </li>
                     )}
                   </Draggable>

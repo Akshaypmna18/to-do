@@ -1,48 +1,46 @@
-import React from "react";
 import { Checkbox } from "../../../components/ui/checkbox";
 import { TrashIcon, Pencil2Icon } from "@radix-ui/react-icons";
 import DialogModal from "../../../components/dialogModal";
 import useTodo from "../../../store";
 import ToolTipComp from "../../../components/toolTip";
 import {
-  TooltipDialogDemo,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from "../../../components/tooltip-dialog-demo";
 
-export const CheckBoxEle = ({ status, id }) => {
+export const CheckBoxEle = ({ todo }) => {
   const { toggleTodoStatus } = useTodo((state) => state);
-  const Content = () => <p>{status ? `Uncheck` : `Check`}</p>;
+  const Content = () => <p>{todo.status ? `Uncheck` : `Check`}</p>;
   return (
     <ToolTipComp Content={() => <Content />}>
       <Checkbox
         className={`hover:border-green-800 ml-1 min-h-[1.5rem] min-w-[1.5rem] ${
-          status ? "border-green-800" : ""
+          todo.status ? "border-green-800" : ""
         }`}
-        checked={status}
-        onCheckedChange={() => toggleTodoStatus(id)}
+        checked={todo.status}
+        onCheckedChange={() => toggleTodoStatus(todo.id)}
       />
     </ToolTipComp>
   );
 };
 
-export const DeleteTodoEle = ({ status, id }) => {
+export const DeleteTodoEle = ({ todo }) => {
   const { removeTodo } = useTodo((state) => state);
   const Content = () => <p>Delete this task</p>;
   return (
     <ToolTipComp Content={() => <Content />}>
       <TrashIcon
         className={`min-h-[1.5rem] min-w-[1.5rem] mt-1 ml-4 cursor-pointer ${
-          status ? "text-red-800" : "hover:text-red-800"
+          todo.status ? "text-red-800" : "hover:text-red-800"
         }`}
-        onClick={() => removeTodo(id)}
+        onClick={() => removeTodo(todo.id)}
       />
     </ToolTipComp>
   );
 };
 
-export const EditTodoEle = ({ id, text }) => {
+export const EditTodoEle = ({ todo }) => {
   // const ToolTipContent = () => <p>Update this task</p>;
 
   // Uncomment this to try tooltip + dialog + demo
@@ -50,7 +48,7 @@ export const EditTodoEle = ({ id, text }) => {
 
   return (
     <Tooltip>
-      <DialogModal id={id} text={text}>
+      <DialogModal defaultTodo={todo}>
         <TooltipTrigger>
           <Pencil2Icon className="min-h-[1.5rem] min-w-[1.5rem] cursor-pointer hover:text-rose-500" />
         </TooltipTrigger>

@@ -37,6 +37,8 @@ const todo = (set, get) => ({
   },
   todo: "",
   setTodo: (todo) => set({ todo }),
+  selectedTodo: null,
+  setSelectedTodo: (selectedTodo) => set({ selectedTodo }),
   // Modal control
   isOpen: false,
   setIsOpen: (isOpen) => set({ isOpen }),
@@ -51,6 +53,7 @@ const todo = (set, get) => ({
         }
         get().setTodo("");
         get().setIsOpen(false);
+        get().setSelectedTodo(null);
       } else alert("Same task already exists");
     }
   },
