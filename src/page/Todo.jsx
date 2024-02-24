@@ -25,7 +25,7 @@ function Todo() {
         Just do it.<span className="animate-pulse">|</span>
       </h1>
 
-      <AddTodo inputRef={inputRef} />
+      <AddTodo />
 
       <Todos />
 
