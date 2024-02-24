@@ -11,6 +11,7 @@ function AddTodo({ inputRef }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleTodo(todo.trim());
+    setTodo("");
   };
 
   return (
