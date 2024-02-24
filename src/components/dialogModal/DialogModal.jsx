@@ -38,7 +38,10 @@ export default function DialogModal({ children, defaultTodo }) {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent className="max-w-[400px]">
+      <DialogContent
+        className="max-w-[400px]"
+        onInteractOutside={(e) => e.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle className="bold text-[calc(1.25rem+.5vw)]">
             <big>{selectedTodo?.id ? "Update Task" : "Add Task"}</big>
