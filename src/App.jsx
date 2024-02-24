@@ -1,5 +1,5 @@
 import React from "react";
-import Todo from "./pages/Todos";
+import Todo from "./page";
 
 function App() {
   return <Todo />;

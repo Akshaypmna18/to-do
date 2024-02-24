@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
-import AddTodo from "../../features/todos/addTodo";
-import ClearAllTodos from "../../features/todos/ClearAllTodos";
-import Todos from "../../features/todos/list/Todos";
-import Theme from "../../features/Theme";
-import Tip from "../../features/Tip";
-import useTodo from "../../store";
+import AddTodo from "../features/todos/addTodo";
+import ClearAllTodos from "../features/todos/ClearAllTodos";
+import Todos from "../features/todos/list/Todos";
+import Theme from "../features/Theme";
+import Tip from "../features/Tip";
+import useTodo from "../store";
 
 function Todo() {
   const { setTodo } = useTodo((state) => state);
