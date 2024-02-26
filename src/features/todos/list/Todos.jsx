@@ -3,7 +3,9 @@ import useTodo from "../../../store";
 import { CheckBoxEle, EditTodoEle, DeleteTodoEle } from "./TodosEle";
 
 function TodosList() {
-  const { todos, toggleTodoStatus, setTodos } = useTodo((state) => state);
+  const todos = useTodo((state) => state.todos);
+  const toggleTodoStatus = useTodo((state) => state.toggleTodoStatus);
+  const setTodos = useTodo((state) => state.setTodos);
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
   const handleOnDragEnd = (result) => {
     const { source, destination } = result;

@@ -3,13 +3,14 @@ import { Button } from "../../../components/ui/button";
 import useTodo from "../../../store";
 import DialogModal from "../../../components/dialogModal";
 
-function AddTodo({ inputRef }) {
-  const { handleTodo, todo, setTodo } = useTodo((state) => state);
+function AddTodo() {
+  const handleTodo = useTodo((state) => state.handleTodo);
+  const todo = useTodo((state) => state.todo);
+  const setTodo = useTodo((state) => state.setTodo);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleTodo(todo.trim());
-    setTodo("");
   };
 
   return (
@@ -19,7 +20,6 @@ function AddTodo({ inputRef }) {
           placeholder="Enter the task..."
           className="font-[poppins]"
           onChange={(e) => setTodo(e.target.value)}
-          ref={inputRef}
           value={todo}
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSubmit(e);
