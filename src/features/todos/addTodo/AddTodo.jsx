@@ -2,16 +2,35 @@ import { Input } from "../../../components/ui/input";
 import { Button } from "../../../components/ui/button";
 import useTodo from "../../../store";
 import DialogModal from "../../../components/dialogModal";
+import { useRef, useEffect } from "react";
 
 function AddTodo() {
   const handleTodo = useTodo((state) => state.handleTodo);
-  const todo = useTodo((state) => state.todo);
-  const setTodo = useTodo((state) => state.setTodo);
+
+  const inputRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleTodo(todo.trim());
+    handleTodo(inputRef.current.value.trim());
+    inputRef.current.value = "";
   };
+
+  const handleClickOutside = (event) => {
+    if (
+      inputRef.current &&
+      typeof inputRef.current.contains === "function" &&
+      !inputRef.current.contains(event.target)
+    )
+      inputRef.current.value = "";
+  };
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => handleClickOutside(event);
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [inputRef]);
 
   return (
     <>
@@ -19,8 +38,7 @@ function AddTodo() {
         <Input
           placeholder="Enter the task..."
           className="font-[poppins]"
-          onChange={(e) => setTodo(e.target.value)}
-          value={todo}
+          ref={inputRef}
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSubmit(e);
           }}
